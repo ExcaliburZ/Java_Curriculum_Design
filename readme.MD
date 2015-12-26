@@ -57,25 +57,25 @@ https://github.com/ExcaliburZ/Java_Curriculum_Design
 
 		#建立培训项目表
 		create table train(
-		  id varchar(40) primary key,
-		  name varchar(40) not null Unquie,
-          place varchar(40) not null,
-		  during varchar(40) not null,
-		  mlimit varchar(40) not null
+			  id varchar(40) unique not null,
+			  name varchar(40) primary key,
+	          place varchar(40) not null,
+			  during varchar(40) not null,
+			  mlimit varchar(40) not null
 		  );
 		  
 		#建立雇员信息表
 		create table employee(
-		 id varchar(40) primary key,
-		 name varchar(40) not null,
-         gender varchar(4) not null,
-		 age varchar(40) not null,
-		 phone varchar(20),
-		 train_id varchar(40),
-		 train_name varchar(40),
-		 constraint train_name_FK foreign key(train_name)  
-		 references train(name) on update cascade on delete cascade
-		  );
+			 id varchar(40) primary key,
+			 name varchar(40) not null,
+	         gender varchar(4) not null,
+			 age varchar(40) not null,
+			 phone varchar(20),
+			 train_id varchar(40),
+			 train_name varchar(40),
+			 constraint train_name_FK foreign key(train_name)  
+			 references train(name) on update cascade on delete cascade
+		 );
 ```
 
 
@@ -86,26 +86,3 @@ https://github.com/ExcaliburZ/Java_Curriculum_Design
 5 写service层
 
 6 写web层
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
