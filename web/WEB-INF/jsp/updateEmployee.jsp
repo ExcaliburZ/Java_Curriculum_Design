@@ -40,86 +40,62 @@
             form.appendChild(input);
             return true;
         }
-<%
-        String gender[] = {"男", "女"};
-        String preference[] = {"读书", "看报", "唱歌", "大保健"};
-        String type[] = {"普通客户", "会员用户", "VIP用户"};
-        request.setAttribute("gender", gender);
-        request.setAttribute("preference", preference);
-        request.setAttribute("type", type);
-%>
     </script>
-
+    <%
+        String gender[] = {"男", "女"};
+        request.setAttribute("gender", gender);
+    %>
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/ShowCalendar.js"></script>
 </head>
 <body style="text-align: center">
-<form action="${pageContext.request.contextPath}/UpdateServlet" method="post" onsubmit="return makepre()"
+<form action="${pageContext.request.contextPath}/UpdateEmployeeServlet" method="post" onsubmit="return makepre()"
       id="hehe">
-    <input type="hidden" value="${customer.id}" name="id">
-    <table align="center" border="1" id="table">
+    <input type="hidden" value="${employee.id}" name="id">
+    <table align="center" border="1" width="30%">
         <tr>
-            <td>用户姓名</td>
+            <td>员工姓名</td>
             <td>
-                <input type="text" name="name" value="${customer.name}">
+                <input type="text" name="name" value="${employee.name}">
             </td>
         </tr>
         <tr>
             <td>性别</td>
             <td style="text-align: left">
                 <c:forEach var="str" items="${gender}">
-                    <input type="radio" name="gender" value="${str}" ${customer.gender == str?'checked':''}>
+                    <input type="radio" name="gender" value="${str}" ${employee.gender == str?'checked':''}>
                     ${str}
                 </c:forEach>
             </td>
         </tr>
         <tr>
-            <td>生日</td>
+            <td>年纪</td>
             <td>
-                <input name="birthday" type="text" id="birthday" title="点击选择" onClick="showCalendar(this.id)"
-                       value="${customer.birthday}">
+                <input name="age" type="text" value="${employee.age}">
             </td>
         </tr>
         <tr>
             <td>联系电话</td>
             <td>
-                <input name="cellphone" type="text" value="${customer.cellphone}">
+                <input name="phone" type="text" value="${employee.phone}">
             </td>
         </tr>
         <tr>
-            <td>邮箱</td>
+            <td>参与项目</td>
             <td>
-                <input name="email" type="text" value="${customer.email}">
-            </td>
-        </tr>
-        <tr>
-            <td>爱好</td>
-            <td>
-                <c:forEach items="${preference}" var="p">
-                    <input type="checkbox" name="pre"
-                           value="${p}" ${fn:contains(customer.preference,p)?'checked':''}> ${p}
-                </c:forEach>
-            </td>
-        </tr>
-        <tr>
-            <td>类型</td>
-            <td>
-                <c:forEach items="${type}" var="t">
-                    <input type="radio" name="type" value="${t}" ${fn:contains(customer.type,t)?'checked':''}> ${t}
-                </c:forEach>
-            </td>
-        </tr>
-        <tr>
-            <td>简介</td>
-            <td>
-                <textarea name="description" rows="5" cols="65">${customer.description}</textarea>
+                <select name="train_id">
+                    <c:forEach items="${requestScope.trains}" var="p">
+                        <option value="${p.id}" ${p.id==employee.id?'selected':''}>
+                                ${p.name}</option>
+                    </c:forEach>
+                </select>
             </td>
         </tr>
         <tr>
             <td>
-                <input type="reset" value="重置">
+                操作
             </td>
             <td>
-                <input type="submit" value="修改信息">
+                <input type="submit" value="更新员工">
             </td>
         </tr>
     </table>

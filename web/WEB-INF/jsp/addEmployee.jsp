@@ -4,16 +4,16 @@
 <head>
     <title></title>
     <script type="text/javascript">
-        function makepre(){
+        function makepre() {
             var pres = document.getElementsByName("pre");
             var preference = "";
-            for(var i=0;i<pres.length;i++){
+            for (var i = 0; i < pres.length; i++) {
                 var input = pres[i];
-                if(input.checked==true){
+                if (input.checked == true) {
                     preference = preference + input.value + ",";
                 }
             }
-            preference = preference.substr(0,preference.length-1);
+            preference = preference.substr(0, preference.length - 1);
             var form = document.getElementById("form");
             var input = document.createElement("input");
             input.type = "hidden";
@@ -25,22 +25,28 @@
     </script>
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/ShowCalendar.js"></script>
     <style>
-        table{
+        table {
             font-size: 24px;
             margin-top: 80px;
             font-family: "黑体";
         }
-        input{
+
+        input {
             font-size: 24px;
             font-family: "黑体";
         }
     </style>
+    <%
+        String gender[] = {"男", "女"};
+        request.setAttribute("gender", gender);
+    %>
 </head>
 <body style="text-align: center">
-<form action="${pageContext.request.contextPath}/addCustomerServlet" method="post" onsubmit="return makepre()" id="form">
-    <table align="center" border="1" width="30%" >
+<form action="${pageContext.request.contextPath}/AddEmployeeServlet" method="post" onsubmit="return makepre()"
+      id="form">
+    <table align="center" border="1" width="30%">
         <tr>
-            <td>用户姓名</td>
+            <td>员工姓名</td>
             <td>
                 <input type="text" name="name">
             </td>
@@ -54,43 +60,26 @@
             </td>
         </tr>
         <tr>
-            <td>生日</td>
+            <td>年纪</td>
             <td>
-                <input name="birthday" type="text" id="birthday" title="点击选择" onClick="showCalendar(this.id)">
+                <input name="age" type="text">
             </td>
         </tr>
         <tr>
             <td>联系电话</td>
             <td>
-                <input name="cellphone" type="text">
+                <input name="phone" type="text">
             </td>
         </tr>
         <tr>
-            <td>邮箱</td>
+            <td>参与项目</td>
             <td>
-                <input name="email" type="text">
-            </td>
-        </tr>
-        <tr>
-            <td>爱好</td>
-            <td>
-                <c:forEach items="${preference}" var="p">
-                    <input type="checkbox" name="pre" value="${p}"> ${p}
-                </c:forEach>
-            </td>
-        </tr>
-        <tr>
-            <td>类型</td>
-            <td>
-                <c:forEach items="${type}" var="t">
-                    <input type="radio" name="type" value="${t}"> ${t}
-                </c:forEach>
-            </td>
-        </tr>
-        <tr>
-            <td>简介</td>
-            <td>
-                <textarea name="description" rows="5" cols="65"></textarea>
+                <select name="train_id">
+                    <c:forEach items="${requestScope.trains}" var="p">
+                        <option value="${p.id}" selected="${p.id==requestScope.trains[0].id?'selected':''}">
+                                ${p.name}</option>
+                    </c:forEach>
+                </select>
             </td>
         </tr>
         <tr>
@@ -101,7 +90,6 @@
                 <input type="submit" value="添加客户">
             </td>
         </tr>
-
     </table>
 </form>
 </body>

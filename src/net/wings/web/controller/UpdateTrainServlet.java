@@ -1,8 +1,8 @@
 package net.wings.web.controller;
 
-import net.wings.domain.customer;
-import net.wings.service.BusinessService;
-import net.wings.service.impl.BusinessServiceImpl;
+import net.wings.domain.Train;
+import net.wings.service.BizService;
+import net.wings.service.impl.BizServiceImpl;
 import net.wings.utils.WebUtils;
 
 import javax.servlet.ServletException;
@@ -15,27 +15,27 @@ import java.io.IOException;
 /**
  * Created by wing on 2015/12/26.
  */
-@WebServlet(name = "UpdateServlet", urlPatterns = "/UpdateServlet")
-public class UpdateServlet extends HttpServlet {
+@WebServlet(name = "UpdateTrainServlet", urlPatterns = "/UpdateTrainServlet")
+public class UpdateTrainServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             request.setCharacterEncoding("UTF-8");
-            customer c = WebUtils.requestToBean(request, customer.class);
-            BusinessService service = new BusinessServiceImpl();
-            service.updateCustomer(c);
-            request.setAttribute("message", "Update Success!");
+            Train c = WebUtils.requestToBean(request, Train.class);
+            BizService service = new BizServiceImpl();
+            service.updateTrain(c);
+            request.setAttribute("message", "Update Train Success!");
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("message", "Update Failed!");
+            request.setAttribute("message", "Update Train Failed!");
         }
         request.getRequestDispatcher("/message.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        BusinessService service = new BusinessServiceImpl();
-        customer c = service.find(request.getParameter("id"));
-        request.setAttribute("customer", c);
+        BizService service = new BizServiceImpl();
+        Train train = service.findTrain(request.getParameter("id"));
+        request.setAttribute("train", train);
 
-        request.getRequestDispatcher("/WEB-INF/jsp/updateCustomer.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/updateTrain.jsp").forward(request, response);
     }
 }

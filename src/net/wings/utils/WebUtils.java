@@ -1,8 +1,5 @@
 package net.wings.utils;
 
-import com.sun.deploy.net.HttpRequest;
-import com.sun.javafx.scene.layout.region.Margins;
-import net.wings.domain.customer;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.Converter;
@@ -18,20 +15,20 @@ import java.util.UUID;
  * Created by wing on 2014/10/19.
  */
 public class WebUtils {
-    public static customer Tobean(HttpServletRequest request,customer c){
-
-        /*c.setEmail(request.getParameter("email"));
-        c.setBirthday(new Date());
-        c.setGender(request.getParameter("gender"));
-        c.setName(request.getParameter("name"));
-        c.setCellphone(request.getParameter("cellphone"));
-        c.setDescription(request.getParameter("description"));
-        c.setPreference(request.getParameter("preference"));
-        c.setType(request.getParameter("type"));*/
-        c.setName(request.getParameter("name"));
-
-        return c;
-    }
+//    public static customer Tobean(HttpServletRequest request,customer c){
+//
+//        /*c.setEmail(request.getParameter("email"));
+//        c.setBirthday(new Date());
+//        c.setGender(request.getParameter("gender"));
+//        c.setName(request.getParameter("name"));
+//        c.setCellphone(request.getParameter("cellphone"));
+//        c.setDescription(request.getParameter("description"));
+//        c.setPreference(request.getParameter("preference"));
+//        c.setType(request.getParameter("type"));*/
+//        c.setName(request.getParameter("name"));
+//
+//        return c;
+//    }
 
     public static <T> T requestToBean(HttpServletRequest request, Class beanClass) {
         try {

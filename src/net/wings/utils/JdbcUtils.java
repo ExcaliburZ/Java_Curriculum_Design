@@ -90,9 +90,9 @@ public class JdbcUtils {
         try {
             conn = getconnection();
             st = conn.prepareStatement(sql);
-            if (params ==null){
-                rs =st.executeQuery();
-            }else {
+            if (params == null) {
+                rs = st.executeQuery();
+            } else {
                 for (int i = 0; i < params.length; i++) {
                     st.setObject(i + 1, params[i]);
                 }
@@ -107,8 +107,8 @@ public class JdbcUtils {
         }
 
     }
-    public static Object select(String sql, ResultSetHandler handler) {
 
+    public static Object select(String sql, ResultSetHandler handler) {
 
         Connection conn = null;
         PreparedStatement st = null;

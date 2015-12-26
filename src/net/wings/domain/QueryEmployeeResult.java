@@ -5,15 +5,15 @@ import java.util.List;
 /**
  * Created by wing on 2014/10/20.
  */
-public class QuertResult {
-    private List<customer> list; //±£´æĞèÒªÏÔÊ¾Ò³ÃæÊı¾İ
-    private int totalrecord;    //Êı¾İµÄ×ÜÊıÄ¿
+public class QueryEmployeeResult {
+    private List<Employee> list; //ä¿å­˜éœ€è¦æ˜¾ç¤ºé¡µé¢æ•°æ®
+    private int totalrecord;    //æ•°æ®çš„æ€»æ•°ç›®
 
-    public List<customer> getList() {
+    public List<Employee> getList() {
         return list;
     }
 
-    public void setList(List<customer> list) {
+    public void setList(List<Employee> list) {
         this.list = list;
     }
 

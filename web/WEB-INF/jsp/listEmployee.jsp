@@ -6,8 +6,8 @@
     <title>列出所有客户</title>
     <script type="text/javascript">
         function del(id) {
-            if (window.confirm("你确认要删除吗？")) {
-                window.location.href = "${pageContext.request.contextPath}/DeleteCustomerServlet?id=" + id;
+            if (window.confirm("你确认要删除这个员工吗？")) {
+                window.location.href = "${pageContext.request.contextPath}/DeleteEmployeeServlet?id=" + id;
             }
         }
     </script>
@@ -64,28 +64,22 @@
 <body style="text-align: center">
 <table border="1px" width="70%" align="center">
     <tr>
-        <td>客户姓名</td>
+        <td>员工姓名</td>
         <td>性别</td>
-        <td>生日</td>
+        <td>年龄</td>
         <td>联系电话</td>
-        <td>邮箱</td>
-        <td>爱好</td>
-        <td>类型</td>
-        <td>简介</td>
+        <td>报名项目</td>
         <td>操作</td>
     </tr>
     <c:forEach items="${pagebean.list}" var="str" varStatus="status">
         <tr class="${status.count%2==0?'even':'odd'}">
             <td>${fn:filter(str.name)}</td>
             <td>${str.gender}</td>
-            <td>${str.birthday}</td>
-            <td>${str.cellphone}</td>
-            <td>${str.email}</td>
-            <td>${fn:filter(str.preference)}</td>
-            <td>${str.type}</td>
-            <td>${fn:filter(str.description)}</td>
+            <td>${str.age}</td>
+            <td>${str.phone}</td>
+            <td>${str.train_name}</td>
             <td>
-                <a href="${pageContext.request.contextPath}/UpdateCustomerServlet?id=${str.id}">修改</a>
+                <a href="${pageContext.request.contextPath}/UpdateEmployeeServlet?id=${str.id}">修改</a>
                 <a href="javascript:void(0)" onclick="return del('${str.id}')">删除</a>
             </td>
         </tr>
@@ -102,7 +96,7 @@
             if (pagesize < 0 || pagesize != parseInt(pagesize)) {
                 pagesize = 5;
             }
-            window.location.href = "${pageContext.request.contextPath}/listCustomerServlet?currentpage=" + targetpage + "&pagesize=" + pagesize;
+            window.location.href = "${pageContext.request.contextPath}/ListEmployeeServlet?currentpage=" + targetpage + "&pagesize=" + pagesize;
         }
     }
 </script>

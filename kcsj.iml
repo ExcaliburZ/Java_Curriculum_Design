@@ -31,5 +31,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="catalina" level="project" />
+    <orderEntry type="library" name="c3p0-0.9.5-pre9" level="project" />
+    <orderEntry type="library" name="commons-dbutils-1.6" level="project" />
   </component>
 </module>

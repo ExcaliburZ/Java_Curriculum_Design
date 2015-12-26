@@ -52,7 +52,7 @@ create database kcsj character set utf8 collate utf8_general_ci;
 
 		create table train(
 		  id varchar(40) primary key,
-		  name varchar(40) not null,
+		  name varchar(40) not null Unquie,
           place varchar(40) not null,
 		  during varchar(40) not null,
 		  mlimit varchar(40) not null
@@ -65,7 +65,8 @@ create database kcsj character set utf8 collate utf8_general_ci;
 		 age varchar(40) not null,
 		 phone varchar(20),
 		 train_id varchar(40),
-		constraint category_id_FK foreign key(train_id) references train(id)
+		 train_name varchar(40),
+		constraint train_name_FK foreign key(train_name) references train(name)
 		  );
 ```
 
