@@ -3,42 +3,30 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-<!--    <filter>
-        <filter-name>WordsFilter</filter-name>
-        <filter-class>net.wings.web.filter.WordsFilter</filter-class>
-    </filter>-->
-
-<!--    <filter-mapping>
-        <filter-name>WordsFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-        <dispatcher>REQUEST</dispatcher>
-        <dispatcher>FORWARD</dispatcher>
-    </filter-mapping>-->
-
-    <!--<filter>
-        <filter-name>CharacterEncodingFilter</filter-name>
-        <filter-class>net.wings.web.filter.CharacterEncodingFilter</filter-class>
+    <filter>
+        <filter-name>EncodingFilter</filter-name>
+        <filter-class>net.wings.web.filter.CharacterFilter</filter-class>
     </filter>
-   <filter-mapping>
-        <filter-name>CharacterEncodingFilter</filter-name>
+    <filter-mapping>
+        <filter-name>EncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
-    </filter-mapping>-->
-    <servlet>
-        <servlet-name>addCustomerServlet</servlet-name>
-        <servlet-class>net.wings.web.controller.addCustomerServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>listCustomerServlet</servlet-name>
-        <servlet-class>net.wings.web.controller.listCustomerServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UpdateCustomerServlet</servlet-name>
-        <servlet-class>net.wings.web.controller.UpdateCustomerServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DelectCustomerServlet</servlet-name>
-        <servlet-class>net.wings.web.controller.DelectCustomerServlet</servlet-class>
-    </servlet>
+    </filter-mapping>
+    <!--<servlet>-->
+    <!--<servlet-name>addCustomerServlet</servlet-name>-->
+    <!--<servlet-class>net.wings.web.controller.addCustomerServlet</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet>-->
+    <!--<servlet-name>listCustomerServlet</servlet-name>-->
+    <!--<servlet-class>net.wings.web.controller.listCustomerServlet</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet>-->
+    <!--<servlet-name>UpdateCustomerServlet</servlet-name>-->
+    <!--<servlet-class>net.wings.web.controller.UpdateCustomerServlet</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet>-->
+    <!--<servlet-name>DelectCustomerServlet</servlet-name>-->
+    <!--<servlet-class>net.wings.web.controller.DeleteCustomerServlet</servlet-class>-->
+    <!--</servlet>-->
 </web-app>

@@ -1,22 +1,22 @@
 
-Ê¹ÓÃ×Ô¶¨Òå¿ò¼Ü¸ÄĞ´
+ä½¿ç”¨è‡ªå®šä¹‰æ¡†æ¶æ”¹å†™
 
-Ê¹ÓÃDBCPÁ¬½Ó³ØÓÅ»¯
+ä½¿ç”¨DBCPè¿æ¥æ± ä¼˜åŒ–
 
 10.20
- ÊµÏÖ·ÖÒ³Êı¾İÏÔÊ¾
+ å®ç°åˆ†é¡µæ•°æ®æ˜¾ç¤º
 
 
-1´î½¨¿ª·¢»·¾³
+1æ­å»ºå¼€å‘ç¯å¢ƒ
 
 
-    1.1 µ¼ÈëÊı¾İ¿âÇı¶¯
-    1.2 µ¼Èë¿ª·¢°ü
-        jstl¿ª·¢°ü
+    1.1 å¯¼å…¥æ•°æ®åº“é©±åŠ¨
+    1.2 å¯¼å…¥å¼€å‘åŒ…
+        jstlå¼€å‘åŒ…
         log4j
         beanutils
 
-    1.3 ´´½¨¿ª·¢°ü
+    1.3 åˆ›å»ºå¼€å‘åŒ…
         net.wings.domain
         net.wings.dao
         net.wings.dao.impl
@@ -31,7 +31,7 @@
         WEB-INF/jsp
 
 
-2´´½¨´ú±íÊµÌåµÄ¿âºÍ±í
+2åˆ›å»ºä»£è¡¨å®ä½“çš„åº“å’Œè¡¨
     create database day14_customer character set utf8 collate utf8_general_ci;
           use day14_customer;
           create table customer
@@ -47,13 +47,13 @@
               description varchar(255)
           );
 
-3 Ğ´ÊµÌå
+3 å†™å®ä½“
 
-4 Ğ´dao²ã
+4 å†™daoå±‚
 
-5 Ğ´service²ã
+5 å†™serviceå±‚
 
-6 Ğ´web²ã
+6 å†™webå±‚
 
 
 

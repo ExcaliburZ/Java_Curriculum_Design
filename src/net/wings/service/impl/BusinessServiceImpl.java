@@ -6,10 +6,11 @@ import net.wings.domain.PageBean;
 import net.wings.domain.QuertResult;
 import net.wings.domain.QueryInfo;
 import net.wings.domain.customer;
+import net.wings.service.BusinessService;
 
 import java.util.List;
 
-public class BussinessServiceImpl implements net.wings.service.BussinessService {
+public class BusinessServiceImpl implements BusinessService {
     CustomerDao dao = new CustomerDaoImpl();
 
     @Override

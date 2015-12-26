@@ -5,9 +5,9 @@
 <head>
     <title>列出所有客户</title>
     <script type="text/javascript">
-        function del(id){
-            if(window.confirm("你确认要删除吗？")){
-                window.location.href="${pageContext.request.contextPath}/DelectCustomerServlet?id="+id;
+        function del(id) {
+            if (window.confirm("你确认要删除吗？")) {
+                window.location.href = "${pageContext.request.contextPath}/DeleteCustomerServlet?id=" + id;
             }
         }
     </script>
@@ -94,17 +94,17 @@
 <br/><br/><br/><br/><br/><br/><br/>
 <script type="text/javascript">
     function gopage(targetpage) {
-        if (targetpage < 0 || targetpage != parseInt(targetpage) ||targetpage > ${pagebean.totalpage}) {
-            document.getElementById("target").value ="";
+        if (targetpage < 0 || targetpage != parseInt(targetpage) || targetpage > ${pagebean.totalpage}) {
+            document.getElementById("target").value = "";
 
-        }else{
-        var pagesize = document.getElementById("input").value;
-        if (pagesize < 0 || pagesize != parseInt(pagesize)) {
-            pagesize = 5;
+        } else {
+            var pagesize = document.getElementById("input").value;
+            if (pagesize < 0 || pagesize != parseInt(pagesize)) {
+                pagesize = 5;
+            }
+            window.location.href = "${pageContext.request.contextPath}/listCustomerServlet?currentpage=" + targetpage + "&pagesize=" + pagesize;
         }
-        window.location.href = "${pageContext.request.contextPath}/listCustomerServlet?currentpage=" + targetpage + "&pagesize=" + pagesize;
-        }
-        }
+    }
 </script>
 <div style="font-size: 24px">
     共[${pagebean.totalrecord}]条记录，每页

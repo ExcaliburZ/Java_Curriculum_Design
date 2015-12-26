@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by wing on 2014/10/18.
  */
-public interface BussinessService {
+public interface BusinessService {
     void addCustomer(customer c);
 
     void delectCustomer(String id);

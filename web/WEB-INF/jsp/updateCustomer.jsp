@@ -40,13 +40,20 @@
             form.appendChild(input);
             return true;
         }
-
+<%
+        String gender[] = {"男", "女"};
+        String preference[] = {"读书", "看报", "唱歌", "大保健"};
+        String type[] = {"普通客户", "会员用户", "VIP用户"};
+        request.setAttribute("gender", gender);
+        request.setAttribute("preference", preference);
+        request.setAttribute("type", type);
+%>
     </script>
 
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/ShowCalendar.js"></script>
 </head>
 <body style="text-align: center">
-<form action="${pageContext.request.contextPath}/UpdateCustomerServlet" method="post" onsubmit="return makepre()"
+<form action="${pageContext.request.contextPath}/UpdateServlet" method="post" onsubmit="return makepre()"
       id="hehe">
     <input type="hidden" value="${customer.id}" name="id">
     <table align="center" border="1" id="table">
@@ -87,7 +94,7 @@
         <tr>
             <td>爱好</td>
             <td>
-                <c:forEach items="${requestScope.preference}" var="p">
+                <c:forEach items="${preference}" var="p">
                     <input type="checkbox" name="pre"
                            value="${p}" ${fn:contains(customer.preference,p)?'checked':''}> ${p}
                 </c:forEach>
@@ -96,7 +103,7 @@
         <tr>
             <td>类型</td>
             <td>
-                <c:forEach items="${requestScope.type}" var="t">
+                <c:forEach items="${type}" var="t">
                     <input type="radio" name="type" value="${t}" ${fn:contains(customer.type,t)?'checked':''}> ${t}
                 </c:forEach>
             </td>
@@ -115,7 +122,6 @@
                 <input type="submit" value="修改信息">
             </td>
         </tr>
-
     </table>
 </form>
 </body>
