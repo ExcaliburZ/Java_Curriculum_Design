@@ -4,7 +4,6 @@
     <file url="file://$PROJECT_DIR$/src/dao.properties" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/net/wings/factory/DaoFactory.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/net/wings/web/filter/CharacterFilter.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/web/WEB-INF/lib/c3p0-0.9.5-pre9.jar" charset="GBK" />
     <file url="file://$PROJECT_DIR$/web/WEB-INF/lib/commons-dbutils-1.6.jar" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />
   </component>

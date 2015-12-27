@@ -11,7 +11,9 @@ B）培训报名信息包括：培训编号，姓名，性别，年龄，电话�
 ##框架
 * 采用MVC三层架构模式设计主体框架
 * 采用git作为版本控制工具,代码托管在Github上  
-https://github.com/ExcaliburZ/Java_Curriculum_Design
+https://github.com/ExcaliburZ/Java_Curriculum_Design  
+项目实例运行在  
+http://182.254.156.215:8080/kcsj
 * Model层使用jdbc+mysql方式,使用dbcp连接池
 * 各层之间使用接口通信,利用工厂+单例 设计模式实现各层之间的解耦合
 
@@ -24,13 +26,13 @@ https://github.com/ExcaliburZ/Java_Curriculum_Design
 > mysql-connector-java-commercial-5.1.25-bin.jar
 
 1.2 导入jar包
-> jstl.jar
-> commons-beanutils-1.8.0.jar
-> commons-dbcp2-2.0.1.jar
-> commons-dbutils-1.6.jar
-> commons-logging-1.2.jar
-> commons-pool2-2.2.jar
-> servlet-api.jar
+> jstl.jar<br/>
+> commons-beanutils-1.8.0.jar<br/>
+> commons-dbcp2-2.0.1.jar<br/>
+> commons-dbutils-1.6.jar<br/>
+> commons-logging-1.2.jar<br/>
+> commons-pool2-2.2.jar<br/>
+> servlet-api.jar<br/>
 > standard.jar
 
 1.3 创建开发包

@@ -84,7 +84,7 @@
             <td>
                 <select name="train_id">
                     <c:forEach items="${requestScope.trains}" var="p">
-                        <option value="${p.id}" ${p.id==employee.id?'selected':''}>
+                        <option value="${p.id}" ${p.id==employee.train_id?'selected':''}>
                                 ${p.name}</option>
                     </c:forEach>
                 </select>
