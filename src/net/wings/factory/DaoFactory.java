@@ -4,9 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-//采用的单例设计模式和工厂设计模式
 
-public class DaoFactory {
+public class DaoFactory{
 
     static Properties prop = new Properties();
 
