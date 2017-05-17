@@ -23,4 +23,9 @@ public class MyCheckInData {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
+    public MyCheckInData(int count, int amount) {
+        this.count = count;
+        this.amount = amount;
+    }
 }

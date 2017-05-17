@@ -1,7 +1,8 @@
-package net.wings.dao;
+package net.wings.dao.impl;
 
 import net.wings.domain.User;
 import net.wings.exception.DaoException;
+import net.wings.utils.BeanHandler;
 import net.wings.utils.JdbcUtils;
 
 /**
@@ -63,6 +64,21 @@ public class UserDaoImpl {
             throw new DaoException(e);
         }
     }
+
+    public Boolean Login(User user) {
+        String account = user.getAccount();
+        String password = user.getPassword();
+        try {
+            String sql = "select * from user where account = ?";
+            Object params[] = {account};
+            User select = (User) JdbcUtils.select(sql, params,
+                    new BeanHandler(User.class));
+            return select.getPassword().equals(password);
+        } catch (Exception e) {
+            throw new DaoException(e);
+        }
+    }
+
 
     public User findByNumber(String number) {
         try {
