@@ -12,30 +12,28 @@ import java.util.List;
 /**
  * Created by wing on 2015/12/26.
  */
-public class DocumentDaoImpl {
+public class QuestionDaoImpl {
     /*
-   create table Document(
+  create table question(
  id varchar(40) primary key,
- name varchar(40) not null,
- uuidname varchar(40) not null,
- size varchar(80) not null,
- download_url varchar(40) not null,
- upload_time varchar(40),
- description varchar(160),
+ title varchar(160) not null,
+ create_time varchar(80),
+ content varchar(250),
  clazz_id varchar(40),
+ constraint clazz_que_FK foreign key(clazz_id) references clazz(id)
  );
  );
     * */
-    public void add(Document item) {
+    public void add(Question item) {
         try {
-            String sql = "insert into document" +
-                    "(id,name,uuidname,size,download_url,upload_time,description,clazz_id)" +
-                    " values(?,?,?,?,?,?,?,?)";
+            String sql = "insert into question" +
+                    "(id,title,content,create_time,clazz_id)" +
+                    " values(?,?,?,?,?)";
             Object params[] = {item.getId(),
-                    item.getName(), item.getUuidname(),
-                    item.getSize(), item.getDownload_url(),
-                    item.getUpload_time(),
-                    item.getDescription(), item.getClazz_id()};
+                    item.getTitle(),
+                    item.getContent(),
+                    item.getCreate_time(),
+                    item.getClazz_id()};
             JdbcUtils.update(sql, params);
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -155,7 +153,7 @@ public class DocumentDaoImpl {
         try {
             Document document = find(id);
             File file = new File(document.getDownload_url() + "\\" + document.getUuidname());
-            if (file.exists()){
+            if (file.exists()) {
                 boolean delete = file.delete();
             }
             String sql = "delete from document where id=?";
@@ -172,6 +170,17 @@ public class DocumentDaoImpl {
             Object params[] = {id};
             return (Document) JdbcUtils.select(sql, params,
                     new net.wings.utils.BeanHandler(Document.class));
+        } catch (Exception e) {
+            throw new DaoException(e);
+        }
+    }
+
+    public List<Question> getQuestionList(String clazzId) {
+        try {
+            String sql = "select * from question where clazz_id = ?";
+            Object params[] = {clazzId};
+            return (List<Question>) JdbcUtils.select(sql, params,
+                    new BeanListHandler(Question.class));
         } catch (Exception e) {
             throw new DaoException(e);
         }

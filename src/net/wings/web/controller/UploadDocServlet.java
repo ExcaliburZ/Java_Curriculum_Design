@@ -27,14 +27,13 @@ public class UploadDocServlet extends HttpServlet {
 
 //        PrintWriter out = response.getWriter();
         Gson gson = new Gson();
-        String savePath = this.getServletContext().getRealPath("/Document");
+        String savePath = this.getServletContext().getRealPath("/document");
         Document document = DownloadUtils.doupload(request, savePath);
         document.setClazz_id(clazzId);
         document.setSize(size);
         DocumentDaoImpl documentDao = new DocumentDaoImpl();
         documentDao.add(document);
         writer.print(gson.toJson(new Result(200, "success")));
-        System.out.println(document);
     }
 
 

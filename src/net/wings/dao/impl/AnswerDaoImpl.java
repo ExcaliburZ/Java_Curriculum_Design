@@ -2,6 +2,7 @@ package net.wings.dao.impl;
 
 import net.wings.domain.*;
 import net.wings.exception.DaoException;
+import net.wings.utils.BeanHandler;
 import net.wings.utils.BeanListHandler;
 import net.wings.utils.JdbcUtils;
 
@@ -12,62 +13,38 @@ import java.util.List;
 /**
  * Created by wing on 2015/12/26.
  */
-public class DocumentDaoImpl {
+public class AnswerDaoImpl {
     /*
-   create table Document(
+ create table answer(
  id varchar(40) primary key,
- name varchar(40) not null,
- uuidname varchar(40) not null,
- size varchar(80) not null,
- download_url varchar(40) not null,
- upload_time varchar(40),
- description varchar(160),
- clazz_id varchar(40),
- );
- );
-    * */
-    public void add(Document item) {
-        try {
-            String sql = "insert into document" +
-                    "(id,name,uuidname,size,download_url,upload_time,description,clazz_id)" +
-                    " values(?,?,?,?,?,?,?,?)";
-            Object params[] = {item.getId(),
-                    item.getName(), item.getUuidname(),
-                    item.getSize(), item.getDownload_url(),
-                    item.getUpload_time(),
-                    item.getDescription(), item.getClazz_id()};
-            JdbcUtils.update(sql, params);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
-    /*
-    *  create table student_check_in(
  user_account varchar(40),
- name varchar(40) not null,
  clazz_id varchar(40),
- s_number varchar(20),
- check_time varchar(40),
- check_in_id varchar(40),
- constraint check_in_id_sc foreign key(check_in_id) references check_in(id),
- constraint user_account_sc foreign key(user_account) references user(account),
-  constraint clazz_id_sc foreign key(clazz_id) references clazz(id)
+ question_id varchar(40),
+ answer varchar(250) not null,
+ answer_time varchar(80),
+ constraint question_id_an foreign key(question_id) references question(id),
+ constraint user_account_an foreign key(user_account) references user(account),
+  constraint clazz_id_an foreign key(clazz_id) references clazz(id)
+ );
  );
     * */
-    public void studentCheckIn(String clazzId, String studentID, String studentName,
-                               String studentNumber, String time, String checkInID) {
+    public void add(Answer item) {
         try {
-            String sql = "insert into student_check_in " +
-                    "(clazz_id,user_account,name,s_number,check_time,check_in_id)" +
+            String sql = "insert into answer" +
+                    "(id,user_account,clazz_id,question_id,answer,answer_time)" +
                     " values(?,?,?,?,?,?)";
-            Object params[] = {clazzId, studentID, studentName, studentNumber, time, checkInID};
+            Object params[] = {item.getId(),
+                    item.getUser_account(),
+                    item.getClazz_id(),
+                    item.getQuestion_id(),
+                    item.getAnswer(),
+                    item.getAnswer_time()};
             JdbcUtils.update(sql, params);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
+
 
     //    public void delete(String id) {
 //        try {
@@ -126,17 +103,12 @@ public class DocumentDaoImpl {
         }
     }
 
-    public MyCheckInData getMyCheckInData(String clazzId, String account) {
-        String sql = "select * from check_in where clazz_id = ?";
-        Object params[] = {clazzId};
-        List<CheckIn> selectClazzList = (List<CheckIn>) JdbcUtils.select(sql, params,
-                new BeanListHandler(CheckIn.class));
-        String sql_sc = "select * from student_check_in where user_account = ? and clazz_id = ?;";
-        Object param_sc[] = {account, clazzId};
-        List<StudentCheckIn> select = (List<StudentCheckIn>) JdbcUtils.select(sql_sc, param_sc,
-                new BeanListHandler(StudentCheckIn.class));
-        return new MyCheckInData(select == null ? 0 : select.size(),
-                selectClazzList == null ? 0 : selectClazzList.size());
+    public boolean findAnswer(String userAccount, String queId) {
+        String sql = "select * from answer where user_account = ? and question_id= ?";
+        Object params[] = {userAccount, queId};
+        Answer select = (Answer) JdbcUtils.select(sql, params,
+                new BeanHandler(Answer.class));
+        return select != null;
     }
 
     public List<Document> getDocList(String clazzId) {
@@ -155,7 +127,7 @@ public class DocumentDaoImpl {
         try {
             Document document = find(id);
             File file = new File(document.getDownload_url() + "\\" + document.getUuidname());
-            if (file.exists()){
+            if (file.exists()) {
                 boolean delete = file.delete();
             }
             String sql = "delete from document where id=?";
@@ -175,5 +147,31 @@ public class DocumentDaoImpl {
         } catch (Exception e) {
             throw new DaoException(e);
         }
+    }
+
+    public List<Question> getQuestionList(String clazzId) {
+        try {
+            String sql = "select * from question where clazz_id = ?";
+            Object params[] = {clazzId};
+            return (List<Question>) JdbcUtils.select(sql, params,
+                    new BeanListHandler(Question.class));
+        } catch (Exception e) {
+            throw new DaoException(e);
+        }
+    }
+
+    public List<Answer> getAnswerList(String questionId) {
+        String sql = "select * from answer where question_id = ?";
+        Object params[] = {questionId};
+        List<Answer> answerList = (List<Answer>) JdbcUtils.select(sql, params,
+                new BeanListHandler(Answer.class));
+        UserDaoImpl dao = new UserDaoImpl();
+        for (Answer answer : answerList) {
+            String user_account = answer.getUser_account();
+            User byAccount = dao.findByAccount(user_account);
+            answer.setUser_name(byAccount.getName());
+            answer.setUser_number(byAccount.getS_number());
+        }
+        return answerList;
     }
 }
